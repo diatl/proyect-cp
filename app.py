@@ -50,9 +50,10 @@ with st.container():
     button_search = st.button("Search video")
     
     if button_search:
+       
+        st.video(video_url)
+        st.write("Processing, please wait a moment")
         try:
-            st.video(video_url)
-            st.write("Processing, please wait a moment")
             youtube_video = YouTube(video_url)
             video_title = youtube_video.title
             stream = youtube_video.streams.get_highest_resolution()
@@ -66,3 +67,4 @@ with st.container():
                     )
         except Exception as e:
             print("Error when searching for the video, this error is due to two possible reasons, either you did not enter the URL correctly, or the video you want to download is not available.", str(e))
+
