@@ -66,5 +66,4 @@ with st.container():
                         mime="mp4"
                     )
         except Exception as e:
-             st.warning("Error when searching for the video, this error is due to two possible reasons, either you did not enter the URL correctly, or the video you want to download is not available.", str(e))
-
+            st.warning("Error when searching for the video, this error is due to two possible reasons, either you did not enter the URL correctly, or the video you want to download is not available.", str(e))
