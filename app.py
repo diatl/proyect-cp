@@ -1,10 +1,7 @@
 import requests
 import streamlit as st
 from streamlit_lottie import st_lottie
-from PIL import Image
-from googleapiclient.discovery import build
 from pytube import YouTube
-from flask import Flask, request, render_template, send_file
 import tempfile
 import os
 
@@ -66,3 +63,6 @@ with st.container():
                     file_name=archivo,
                     mime="mp4"
                   )
+    else:
+        st.warning("Error when searching for the video, this error is due to two possible reasons, either you did not enter the URL correctly, or the video you want to download is not available. ")
+
