@@ -50,19 +50,19 @@ with st.container():
     button_search = st.button("Search video")
     
     if button_search:
-        st.video(video_url)
-        st.write("Processing, please wait a moment")
-        youtube_video = YouTube(video_url)
-        video_title = youtube_video.title
-        stream = youtube_video.streams.get_highest_resolution()
-        archivo = stream.download(output_path=tempfile.gettempdir(), filename=f'{video_title}.mp4')
-        with open(archivo, "rb") as file:
-            btn =  st.download_button(
-                    label="Download video",
-                    data=file,
-                    file_name=archivo,
-                    mime="mp4"
-                  )
-    else:
-        st.warning("Error when searching for the video, this error is due to two possible reasons, either you did not enter the URL correctly, or the video you want to download is not available. ")
-
+        try:
+            st.video(video_url)
+            st.write("Processing, please wait a moment")
+            youtube_video = YouTube(video_url)
+            video_title = youtube_video.title
+            stream = youtube_video.streams.get_highest_resolution()
+            archivo = stream.download(output_path=tempfile.gettempdir(), filename=f'{video_title}.mp4')
+            with open(archivo, "rb") as file:
+                btn =  st.download_button(
+                        label="Download video",
+                        data=file,
+                        file_name=archivo,
+                        mime="mp4"
+                    )
+        except Exception as e:
+            print("Error when searching for the video, this error is due to two possible reasons, either you did not enter the URL correctly, or the video you want to download is not available.", str(e))
